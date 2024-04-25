@@ -31,7 +31,9 @@ def classify_face_shape(keypoints):
         return "Oval"
     elif horizontal_proportion > 1:  # Wider across the eyes than cheekbones/nose, indicative of a Round face
         return "Round"
-    elif face_length < nose_width and eye_dist < nose_width:  # Prominent jawline with a short face length typically Square
+    elif face_length < nose_width and eye_dist < nose_width:  # Prominent jawline with a short face length typically indicates Square
         return "Square"
-    else:  # Heart shape usually has a broader forehead and tapering towards the chin
+    elif horizontal_proportion > 0.9 and vertical_proportion < 1.1:  # Heart has a wider forehead and tapers towards the chin
         return "Heart"
+    else:  # Oblong faces are longer and less round, typically not fitting other categories clearly
+        return "Oblong"
