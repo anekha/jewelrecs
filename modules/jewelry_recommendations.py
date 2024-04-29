@@ -14,9 +14,12 @@ def recommend_jewelry_face_shape(face_shape):
                    "Curved or rounded bracelets to balance the angular jawline"],
         "heart": ["Tear-drop or chandelier earrings to complement the wider forehead",
                   "V-shaped or sweetheart necklaces to accentuate the neckline",
-                  "Delicate, heart-shaped bracelets or charm bracelets to add femininity"]
+                  "Delicate, heart-shaped bracelets or charm bracelets to add femininity"],
+        "oblong": ["Large hoop or teardrop earrings to add width to the face",
+                   "Shorter necklaces to reduce the appearance of length",
+                   "Wide bracelets to balance facial proportions"]
     }
-    return recommendations.get(face_shape, "No specific recommendations")
+    return recommendations.get(face_shape.lower(), "No specific recommendations")
 
 def recommend_gemstone_shape(face_shape):
     """Returns recommended gemstone shapes based on the face shape."""
@@ -25,9 +28,9 @@ def recommend_gemstone_shape(face_shape):
         "round": "Angular gemstone shapes like rectangles or squares to add definition",
         "square": "Oval or pear-shaped gemstones to soften facial angles",
         "heart": "Heart-shaped gemstones for a romantic look",
-        "diamond": "Asscher-cut or emerald-cut gemstones to complement angular features"
+        "oblong": "Round or cushion-cut gemstones to add softness and reduce perceived length"
     }
-    return shapes.get(face_shape, "No specific recommendations")
+    return shapes.get(face_shape.lower(), "No specific recommendations")
 
 def recommend_gemstone_skin_tone(undertone):
     """Returns gemstone recommendations based on skin undertone."""
@@ -36,7 +39,7 @@ def recommend_gemstone_skin_tone(undertone):
         "warm": ["Citrine, garnet, or topaz to enhance warmer skin tones"],
         "neutral": ["Aquamarine, emerald, or pearls for versatile options that suit most skin tones"]
     }
-    return recommendations.get(undertone, [])
+    return recommendations.get(undertone.lower(), [])
 
 def recommend_metal_color_skin_tone(undertone):
     """Returns recommended metal colors based on skin undertone."""
@@ -45,7 +48,7 @@ def recommend_metal_color_skin_tone(undertone):
         "warm": ["Yellow gold or rose gold to complement warmer skin tones"],
         "neutral": ["Both white gold and yellow gold can work well, depending on personal preference"]
     }
-    return recommendations.get(undertone, [])
+    return recommendations.get(undertone.lower(), [])
 
 def generate_jewelry_recommendations(image_path, num_colors=5):
     """Generates jewelry recommendations based on detected facial features and colors."""

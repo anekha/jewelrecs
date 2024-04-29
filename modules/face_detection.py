@@ -17,23 +17,23 @@ def classify_face_shape(keypoints):
     mouth_left = np.array(keypoints['mouth_left'])
     mouth_right = np.array(keypoints['mouth_right'])
 
-    # Calculate distances between key facial points
     eye_dist = np.linalg.norm(left_eye - right_eye)
     nose_width = np.linalg.norm(nose - left_eye) + np.linalg.norm(nose - right_eye)
     face_length = np.linalg.norm(mouth_left - left_eye) + np.linalg.norm(mouth_right - right_eye)
 
-    # Horizontal vs Vertical proportion comparison
     horizontal_proportion = eye_dist / nose_width
     vertical_proportion = face_length / ((eye_dist + nose_width) / 2)
 
-    # Classification based on ratio analysis
-    if vertical_proportion > 1.1:  # More elongated face typically indicates an Oval shape
+    print(f"eye_dist: {eye_dist}, nose_width: {nose_width}, face_length: {face_length}")
+    print(f"horizontal_proportion: {horizontal_proportion}, vertical_proportion: {vertical_proportion}")
+
+    if vertical_proportion > 1.1:
         return "Oval"
-    elif horizontal_proportion > 1:  # Wider across the eyes than cheekbones/nose, indicative of a Round face
+    elif horizontal_proportion > 1:
         return "Round"
-    elif face_length < nose_width and eye_dist < nose_width:  # Prominent jawline with a short face length typically indicates Square
+    elif face_length < nose_width and eye_dist < nose_width:
         return "Square"
-    elif horizontal_proportion > 0.9 and vertical_proportion < 1.1:  # Heart has a wider forehead and tapers towards the chin
+    elif horizontal_proportion > 0.9 and vertical_proportion < 1.1:
         return "Heart"
-    else:  # Oblong faces are longer and less round, typically not fitting other categories clearly
+    else:
         return "Oblong"
